@@ -128,7 +128,7 @@ async function main() {
         console.log("pass the video id or url as an argument");
         return;
     }
-    const m = /watch\?v\=(.*)/.exec(args[0]);
+    const m = /watch\?v\=([^&]*)/.exec(args[0]);
     const videoId = (m && m[1]) || args[0];
     console.log(videoId);
     const videoText = await fetchVideo(videoId);
@@ -143,11 +143,11 @@ async function main() {
     for (const segment of segments) {
         const snippetRuns = segment.transcriptSegmentRenderer.snippet.runs;
         for (const snippetRun of snippetRuns) {
-            text += ' ' + snippetRun.text;
+            text = `${text.trimEnd()} ${snippetRun.text}`;
             //console.log(snippetRun.text);
         }
     }
-    console.log(text);
+    console.log(text.trimStart());
 }
 
 main().then(() => {}).catch((e) => {console.log("catch", e)});
