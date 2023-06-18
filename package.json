@@ -4,7 +4,11 @@
   "main": "index.js",
   "type": "module",
   "license": "MIT",
+  "scripts": {
+    "get": "node ."
+  },
   "dependencies": {
     "node-fetch": "^3.2.9"
-  }
+  },
+  "packageManager": "yarn@3.3.0"
 }
